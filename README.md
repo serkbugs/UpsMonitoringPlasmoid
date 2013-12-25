@@ -1,0 +1,4 @@
+UpsMonitoringPlasmoid
+=====================
+
+UpsMonitoringPlasmoid
