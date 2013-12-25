@@ -1,0 +1,16 @@
+[Desktop Entry]
+Comment=
+Encoding=UTF-8
+Icon=package_office_database
+Name=UPS DataEngine
+Type=Service
+X-KDE-PluginInfo-Author=serk
+X-KDE-PluginInfo-Category=System Information
+X-KDE-PluginInfo-Email=serk@none.org
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-Name=Upsdataengine
+X-KDE-PluginInfo-Version=1
+X-KDE-PluginInfo-Website=
+X-KDE-ServiceTypes=Plasma/DataEngine
+X-Plasma-API=ruby-script
+X-Plasma-MainScript=code/main.rb
