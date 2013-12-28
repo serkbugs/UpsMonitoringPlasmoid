@@ -27,18 +27,20 @@ mainLayout.orientation = QtVertical
 // Create and set a simple label; then add it
 
 
+widget = new GraphicsWidget()
+mainLayout.addItem(widget)
 
 meter = new Meter()
-meter.meterType = Meter.BarMeterHorizontal      
+meter.meterType = Meter.BarMeterHorizontal
 meter.maximum = 100
 meter.value = 50
-mainLayout.addItem(meter)
-
-signal = new SignalPlotter()
-signal.showTopBar = true
-signal.showLabels = true
-mainLayout.addItem(signal)
-
-label = new Label()
-label.text="Test"
+widget.addItem(meter)
+//
+//signal = new SignalPlotter()
+//signal.showTopBar = true
+//signal.showLabels = true
+//mainLayout.addItem(signal)
+//
+//label = new Label()
+//label.text="Test"
 
