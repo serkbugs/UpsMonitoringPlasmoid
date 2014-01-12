@@ -112,12 +112,24 @@ class Main < PlasmaScripting::DataEngine
       begin
         @ups = Ups.new(host='localhost', ups='myups')
       end
+
+      updateStaticData('UPSLoad', '%', 0, 100, 'Ups Load')
+
+      updateStaticData('UPSBatteryCharge', '%', 0, 100, 'Battery Charge')
+
+      updateStaticData('UPSBatteryVoltage','V', 0, 15, 'Battery Voltage')
+
+      updateStaticData('UPSInputVoltage', 'V', 0, 300, 'Ups Input Voltage')
+
+      updateStaticData('UPSOutputVoltage','V', 0, 300, 'Ups Output Voltage')
+
+
     end
 
     #   sources method
     #   Used by applets to request what data source the DataEngine has
     def sources
-      sources = %w(ups_info)
+      sources = %w(UPSLoad UPSBatteryCharge UPSBatteryVoltage UPSInputVoltage UPSOutputVoltage)
       return sources
     end
 
@@ -133,16 +145,34 @@ class Main < PlasmaScripting::DataEngine
     def updateSourceEvent(source)
       # Add custom code here
 
-      if source == 'ups_info'
-        @ups.fill_parms()
-        setData(source, I18N_NOOP("UPSLoad"), i18n(@ups.upsLoad))
-        setData(source, I18N_NOOP("UPSBatteryCharge"), i18n(@ups.batteryCharge))
-        setData(source, I18N_NOOP("UPSBatteryVoltage"), i18n(@ups.batteryVoltage))
-        setData(source, I18N_NOOP("UPSInputVoltage"), i18n(@ups.inputVoltage))
-        setData(source, I18N_NOOP("UPSOutputVoltage"), i18n(@ups.outputVoltage))
+      @ups.fill_parms()
+      case source
+        when 'UPSLoad'
+          updateValue(source, @ups.upsLoad)
+        when 'UPSBatteryCharge'
+          updateValue(source, @ups.batteryCharge)
+        when "UPSBatteryVoltage"
+          updateValue(source, @ups.batteryVoltage)
+        when 'UPSInputVoltage'
+          updateValue(source, @ups.inputVoltage)
+        when 'UPSOutputVoltage'
+          updateValue(source, @ups.outputVoltage)
       end
 
       return true
     end
+
+    def updateStaticData(source, units, min, max, name)
+        setData(source, I18N_NOOP('units'), units)
+        setData(source, I18N_NOOP('min'), min)
+        setData(source, I18N_NOOP('max'), max)
+        setData(source, I18N_NOOP('name'), name)
+    end
+
+    def updateValue (source, value)
+      setData(source, I18N_NOOP('value'), value)
+    end
+
+
   end
 end

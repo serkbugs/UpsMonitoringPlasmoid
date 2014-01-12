@@ -16,35 +16,40 @@ add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 
 # lib
 
-set(lib_SRCS
-    monitoricon.cpp
+#set(lib_SRCS
+#    monitoricon.cpp
+#    applet.cpp
+#    plotter.cpp
+#)
+
+
+#add_library(plasma_applet-system-monitor SHARED ${lib_SRCS})
+#target_link_libraries(plasma_applet-system-monitor ${KDE4_PLASMA_LIBS} ${KDE4_KDEUI_LIBS})
+#set_target_properties(plasma_applet-system-monitor PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
+
+
+# UPS Monitor
+
+set(ups_SRCS
     applet.cpp
     plotter.cpp
+    ups.cpp
 )
 
 
-add_library(plasma_applet-system-monitor SHARED ${lib_SRCS})
-target_link_libraries(plasma_applet-system-monitor ${KDE4_PLASMA_LIBS} ${KDE4_KDEUI_LIBS})
-set_target_properties(plasma_applet-system-monitor PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
-
-# Temperature Monitor
-
-set(temparature_SRCS
-    temperature.cpp
-    temperature-offset-delegate.cpp
-)
-kde4_add_ui_files(temparature_SRCS temperature-config.ui)
-add_library(plasma_applet_sm_temperature MODULE ${temparature_SRCS})
-target_link_libraries(plasma_applet_sm_temperature ${KDE4_PLASMA_LIBS} ${KDE4_KDEUI_LIBS} ${KDE4_KUNITCONVERSION_LIBS} plasma_applet-system-monitor)
+kde4_add_ui_files(ups_SRCS ups-config.ui)
+add_library(plasma_applet_ups_monitor MODULE ${ups_SRCS})
+target_link_libraries(plasma_applet_ups_monitor ${KDE4_PLASMA_LIBS} ${KDE4_KDEUI_LIBS} ${KDE4_KUNITCONVERSION_LIBS})
 
 # Install
+#install(TARGETS
+#    plasma_applet-system-monitor
+#    ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(TARGETS
-    plasma_applet-system-monitor
-    ${INSTALL_TARGETS_DEFAULT_ARGS})
-install(TARGETS
-    plasma_applet_sm_temperature
+    plasma_applet_ups_monitor
     DESTINATION ${PLUGIN_INSTALL_DIR})
+
 install(FILES
-    plasma-applet-sm_temperature.desktop
+    plasma_applet_ups_monitor.desktop
     DESTINATION ${SERVICES_INSTALL_DIR})
 

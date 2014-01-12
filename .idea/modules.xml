@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/testjs/testjs.iml" filepath="$PROJECT_DIR$/testjs/testjs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ups-monitor/ups-monitor.iml" filepath="$PROJECT_DIR$/ups-monitor/ups-monitor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/upsdataengine/upsdataengine.iml" filepath="$PROJECT_DIR$/upsdataengine/upsdataengine.iml" />
+    </modules>
+  </component>
+</project>
+

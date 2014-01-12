@@ -17,25 +17,30 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-#ifndef TEMPERATURE_HEADER
-#define TEMPERATURE_HEADER
+#ifndef UPS_HEADER
+#define UPS_HEADER
 
 #include <applet.h>
-#include "ui_temperature-config.h"
+#include "ui_ups-config.h"
 #include <Plasma/DataEngine>
 #include <QStandardItemModel>
 #include <QTimer>
 
-namespace Plasma {
-    class Meter;
-}
-
-class Temperature : public SM::Applet
+class Ups : public SM::Applet
 {
+
+#define CUpsdataengine  (QString)"Upsdataengine"
+#define CMin (QString)"min"
+#define CMax (QString)"max"
+#define CValue (QString)"value"
+#define CUnits (QString)"units"
+
+#define CUpsinfo (QString)"upsinfo"
+
     Q_OBJECT
     public:
-        Temperature(QObject *parent, const QVariantList &args);
-        ~Temperature();
+        Ups(QObject *parent, const QVariantList &args);
+        ~Ups();
 
         virtual void init();
 
@@ -44,24 +49,21 @@ class Temperature : public SM::Applet
         void dataUpdated(const QString &name, const Plasma::DataEngine::Data &data);
         void createConfigurationInterface(KConfigDialog *parent);
 
+
     private Q_SLOTS:
-        void configAccepted();
-        void sourceAdded(const QString& name);
-        void sourcesAdded();
+        void configAccepted();        
+        void sourceChanged(const QString &name);
 
     private:
-        Ui::config ui;
+        Ui::configUps ui;
         QStandardItemModel m_tempModel;
         QStringList m_sources;
-        QTimer m_sourceTimer;
-        QRegExp m_rx;
+        //QTimer m_sourceTimer;
+        //QRegExp m_rx;
 
-        QString temperatureTitle(const QString& source);
-        double temperatureOffset(const QString& source);
         bool addVisualization(const QString& source);
         bool isValidDevice(const QString& uuid, Plasma::DataEngine::Data* data);
+
 };
-
-
 
 #endif
