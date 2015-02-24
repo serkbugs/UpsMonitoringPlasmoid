@@ -1,0 +1,22 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=UPS Monitor
+Comment=UPS Monitor
+Type=Service
+Icon=view-statistics
+ServiceTypes=Plasma/Applet
+
+X-KDE-Library=libplasma_applet_ups_monitor
+X-KDE-PluginInfo-Author=serkbugs
+X-KDE-PluginInfo-Email=serkbugs@narod.ru
+X-KDE-PluginInfo-Name=ups_monitor
+X-KDE-PluginInfo-Version=1.0
+X-KDE-PluginInfo-Website=http://plasma.kde.org/
+X-KDE-PluginInfo-Category=System Information
+X-KDE-PluginInfo-Depends=
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-EnabledByDefault=true
+
+X-Plasma-Requires-FileDialog=Unused
+X-Plasma-Requires-LaunchApp=Unused
+

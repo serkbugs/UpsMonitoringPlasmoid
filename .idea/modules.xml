@@ -4,8 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/testjs/testjs.iml" filepath="$PROJECT_DIR$/testjs/testjs.iml" />
       <module fileurl="file://$PROJECT_DIR$/ups-monitor/ups-monitor.iml" filepath="$PROJECT_DIR$/ups-monitor/ups-monitor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ups-plasma/ups-plasma.iml" filepath="$PROJECT_DIR$/ups-plasma/ups-plasma.iml" />
       <module fileurl="file://$PROJECT_DIR$/upsdataengine/upsdataengine.iml" filepath="$PROJECT_DIR$/upsdataengine/upsdataengine.iml" />
     </modules>
   </component>
 </project>
-

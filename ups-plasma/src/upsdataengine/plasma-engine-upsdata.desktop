@@ -1,0 +1,17 @@
+[Desktop Entry]
+Name=UPS DataEngine CPP
+Comment=UPS data engine for my computer
+Type=Service
+Icon=package_office_database
+X-KDE-ServiceTypes=Plasma/DataEngine
+X-KDE-Library=plasma_engine_upsdata
+X-Plasma-EngineName=upsdata
+X-KDE-PluginInfo-Author=serkbugs
+X-KDE-PluginInfo-Email=serkbugs@gmail.com
+X-KDE-PluginInfo-Name=upsdata
+X-KDE-PluginInfo-Version=0.1
+X-KDE-PluginInfo-Website=http://plasma.kde.org/
+X-KDE-PluginInfo-Category=Examples
+X-KDE-PluginInfo-Depends=
+X-KDE-PluginInfo-License=LGPL
+X-KDE-PluginInfo-EnabledByDefault=true
