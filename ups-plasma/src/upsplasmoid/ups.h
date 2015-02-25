@@ -29,7 +29,7 @@
 class Ups : public SM::Applet
 {
 
-#define CUpsdataengine  (QString)"Upsdataengine"
+#define CUpsdataengine  (QString)"upsdata"
 #define CMin (QString)"min"
 #define CMax (QString)"max"
 #define CValue (QString)"value"

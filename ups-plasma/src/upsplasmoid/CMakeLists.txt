@@ -26,6 +26,6 @@ install(TARGETS
     DESTINATION ${PLUGIN_INSTALL_DIR})
 
 install(FILES
-    plasma_applet_ups_monitor.desktop
+    plasma-applet-ups-monitor.desktop
     DESTINATION ${SERVICES_INSTALL_DIR})
 

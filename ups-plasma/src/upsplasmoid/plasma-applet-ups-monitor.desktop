@@ -1,7 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
-Name=UPS Monitor
-Comment=UPS Monitor
+Name=UPS Monitor 2
+Comment=UPS Monitor 2
 Type=Service
 Icon=view-statistics
 ServiceTypes=Plasma/Applet
@@ -9,7 +9,7 @@ ServiceTypes=Plasma/Applet
 X-KDE-Library=libplasma_applet_ups_monitor
 X-KDE-PluginInfo-Author=serkbugs
 X-KDE-PluginInfo-Email=serkbugs@narod.ru
-X-KDE-PluginInfo-Name=ups_monitor
+X-KDE-PluginInfo-Name=ups_monitor2
 X-KDE-PluginInfo-Version=1.0
 X-KDE-PluginInfo-Website=http://plasma.kde.org/
 X-KDE-PluginInfo-Category=System Information
