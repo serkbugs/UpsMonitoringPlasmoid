@@ -44,7 +44,9 @@ void Ups::updateFromService()
     try
     {
         TcpClient client(this->_hostName.toUtf8().constData(), this->_port);
-        client.connect();
+        if(!client.isConnected())
+            client.connect();
+
         if(!client.isConnected()){
 
             qDebug() << QString("Cannot connect to host=%1 and port=%2").arg(this->_hostName, this->_port);
@@ -84,6 +86,9 @@ void Ups::updateFromService()
                 }
             }
         }
+
+        if(client.isConnected())
+            client.disconnect();
     }
     catch(...){
         qDebug() << QString("Something is wrong with Nut TcpClient");
