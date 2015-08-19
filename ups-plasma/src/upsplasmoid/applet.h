@@ -59,13 +59,13 @@ class SM_EXPORT Applet : public Plasma::Applet
         void geometryChecked();
 
     protected:
-        qreal preferredItemHeight() { return m_preferredItemHeight; };
+        qreal preferredItemHeight() { return m_preferredItemHeight; }
         void setPreferredItemHeight(qreal preferredItemHeight)
-                { m_preferredItemHeight = preferredItemHeight; };
-        QStringList sources() { return m_sources; };
-        void appendSource(const QString& source) { m_sources.append(source); };
-        void setSources(const QStringList& sources) { m_sources = sources; };
-        void clearSources() { m_sources.clear(); };
+                { m_preferredItemHeight = preferredItemHeight; }
+        QStringList sources() { return m_sources; }
+        void appendSource(const QString& source) { m_sources.append(source); }
+        void setSources(const QStringList& sources) { m_sources = sources; }
+        void clearSources() { m_sources.clear(); }
         void clear();
 
         KConfigGroup config();
