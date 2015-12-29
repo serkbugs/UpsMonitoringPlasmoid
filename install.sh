@@ -9,5 +9,5 @@
 
 
 #data engine 
-cp ./ups-plasma/build/lib/plasma_engine_upsdata.so /usr/lib64/qt5/plugins/plasma/dataengine
+cp ./ups-plasma/build/src/upsdataengine/plasma_engine_upsdata.so /usr/lib64/qt5/plugins/plasma/dataengine
 cp ./ups-plasma/src/upsdataengine/plasma-engine-upsdata.desktop /usr/share/kservices5
