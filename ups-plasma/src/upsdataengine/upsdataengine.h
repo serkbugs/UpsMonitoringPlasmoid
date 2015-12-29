@@ -1,12 +1,13 @@
 #ifndef UPSDATAENGINE_H
 #define UPSDATAENGINE_H
-#include <Plasma/DataEngine>
+#include <plasma/dataengine.h>
 #include <functional>
 #include "ups.h"
 #include <QString>
 #include <string>
+#include <QStringList>
 
-class UpsDataEngine : public Plasma::DataEngine        
+class UpsDataEngine : public Plasma::DataEngine
 {
 
 
@@ -38,4 +39,5 @@ protected:
     QMap<QString,decltype(bt)> _valuesGetters;
 };
 
+//Q_DECLARE_METATYPE(UpsDataEngine)
 #endif // UPSDATAENGINE_H

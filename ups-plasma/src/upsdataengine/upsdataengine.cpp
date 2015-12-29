@@ -1,12 +1,13 @@
 #include "upsdataengine.h"
-#include <Plasma/DataContainer>
+#include <plasma/datacontainer.h>
 #include "ups.h"
+#include <klocalizedstring.h>
 
 UpsDataEngine::UpsDataEngine(QObject *parent, const QVariantList &args)
     : Plasma::DataEngine(parent, args)
 {
     // We ignore any arguments - data engines do not have much use for them
-    Q_UNUSED(args)
+    Q_UNUSED(args);
 
     setMinimumPollingInterval(1000);
 
@@ -60,6 +61,7 @@ bool UpsDataEngine::sourceRequestEvent(const QString &name){
 
 
 bool UpsDataEngine::updateSourceEvent(const QString &source){
+     Q_UNUSED(source);
     Ups ups(QString("localhost"), QString("myups"), 3493);
     ups.updateFromService();
     QMap<QString,decltype(bt)>::iterator it;
@@ -76,7 +78,6 @@ bool UpsDataEngine::updateSourceEvent(const QString &source){
 // the X-Plasma-EngineName in the .desktop file.
 // The second argument is the name of the class in
 // your plugin that derives from Plasma::DataEngine
-K_EXPORT_PLASMA_DATAENGINE(upsdata, UpsDataEngine)
-
+K_EXPORT_PLASMA_DATAENGINE_WITH_JSON(upsdataengine, UpsDataEngine, "plasma-engine-upsdata.json")
 // this is needed since UpsDataEngine is a QObject
 #include "upsdataengine.moc"
