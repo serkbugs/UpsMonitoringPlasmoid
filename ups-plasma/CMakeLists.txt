@@ -1,57 +1,96 @@
-cmake_minimum_required(VERSION 3.0)
 project(upsdataenginecpp)
+#cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
 SET( CMAKE_AUTOMOC ON )
+
+find_package(ECM REQUIRED NO_MODULE)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 #SET( CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/Test" )
 
+find_package(KF5 REQUIRED COMPONENTS
+    Plasma
+    JsEmbed
+    Crash
+    I18n
+    CoreAddons
+#    DocTools
+#    Runner
+#    NotifyConfig
+#    Su
+#    NewStuff
+#    Wallet
+#    KCMUtils
+#    IdleTime
+#    Declarative
+#    TextWidgets
+#    KDELibs4Support
+#    GlobalAccel
+#    DBusAddons
+)
+#find_package(KF5NetworkManagerQt)
+#set_package_properties(KF5NetworkManagerQt PROPERTIES DESCRIPTION "Qt wrapper for NetworkManager API"
+#                       TYPE OPTIONAL
+#                       PURPOSE "Needed by geolocation data engine."
+#                      )
+#find_package(KF5XmlRpcClient REQUIRED)
+
+# WARNING PlasmaQuick provides unversioned CMake config
+#find_package(KF5 REQUIRED COMPONENTS PlasmaQuick)
+#find_package(KF5 REQUIRED COMPONENTS SysGuard)
+#find_package(KF5 REQUIRED COMPONENTS Package)
+#find_package(KF5 5.1 REQUIRED COMPONENTS Baloo)
+#find_package(KF5TextEditor)
+#find_package(KWinDBusInterface CONFIG REQUIRED)
+
+include(KDEInstallDirs)
+include(KDECMakeSettings)
+include(KDECompilerSettings)
+#include(ECMPackageConfigHelpers)
+include(ECMMarkNonGuiExecutable)
+include(CMakePackageConfigHelpers)
+include(WriteBasicConfigVersionFile)
+include(CheckIncludeFiles)
+include(FeatureSummary)
+include(ECMOptionalAddSubdirectory)
+include(ECMQtDeclareLoggingCategory)
+
+include_directories("${CMAKE_CURRENT_BINARY_DIR}")
+
+find_package(Qt5 REQUIRED COMPONENTS
+    Core
+    Widgets
+#    Quick
+    QuickWidgets
+    Concurrent
+    Test
+    Script
+    Network
+    Xml
+)
 
 
-# try Qt5 first, and prefer that if found
-find_package(Qt5Core QUIET)
-IF (Qt5Core_FOUND)
-#    find_package(Qt5Widgets REQUIRED)
-#    find_package(Qt5Xml REQUIRED)
-    find_package(Qt5Network REQUIRED)
-#    find_package(Qt5Sql REQUIRED)
-    find_package(Qt5Test REQUIRED)
+set(QT_QTTEST_LIBRARY ${Qt5Test_LIBRARIES})
 
+set(QT_LIBRARIES
+    ${Qt5Core_LIBRARIES}
+    ${Qt5Widgets_LIBRARIES}
+    ${Qt5Xml_LIBRARIES}
+    ${Qt5Network_LIBRARIES}
+#    ${QTPRINT_LIBRARIES}
+#    ${QTDBUS_LIBRARIES}
+    ${QT_PLATFORM_SPECIFIC_LIBRARIES}
+)
 
-    set(QT_QTTEST_LIBRARY ${Qt5Test_LIBRARIES})
+include_directories(
+    ${Qt5Core_INCLUDE_DIRS}
+    ${Qt5Widgets_INCLUDE_DIRS}
+    ${Qt5Xml_INCLUDE_DIRS}
+    ${Qt5Network_INCLUDE_DIRS}
+)
 
-    set(QT_LIBRARIES
-        ${Qt5Core_LIBRARIES}
-#        ${Qt5Widgets_LIBRARIES}
-#        ${Qt5Xml_LIBRARIES}
-        ${Qt5Network_LIBRARIES}
-#        ${Qt5Sql_LIBRARIES}
-#        ${QTPRINT_LIBRARIES}
-#        ${QTDBUS_LIBRARIES}
-#        ${QT_PLATFORM_SPECIFIC_LIBRARIES}
-    )
-
-    include_directories(
-        ${Qt5Core_INCLUDE_DIRS}
-#        ${Qt5Widgets_INCLUDE_DIRS}
-#        ${Qt5Xml_INCLUDE_DIRS}
-        ${Qt5Network_INCLUDE_DIRS}
-#        ${Qt5Sql_INCLUDE_DIRS}
-    )
-
-ELSE()
-    # No Qt5 found, try Qt4
-    find_package(Qt4 COMPONENTS QtMain QtCore QtNetwork REQUIRED)
-    INCLUDE( UseQt4 )
-    include_directories(${QT_INCLUDES})
-    macro(qt_wrap_cpp)
-        qt4_wrap_cpp(${ARGN})
-    endmacro()
-    macro(qt_wrap_ui)
-        qt4_wrap_ui(${ARGN})
-    endmacro()
-    macro(qt_add_resources)
-        qt4_add_resources(${ARGN})
-    endmacro()
-ENDIF()
 
 enable_testing ()
 add_subdirectory (src)
 add_subdirectory (test)
+
+feature_summary(WHAT ALL FATAL_ON_MISSING_REQUIRED_PACKAGES)

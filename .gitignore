@@ -1,0 +1,5 @@
+**/build/*
+*.user
+**/CMakeFiles/**
+ups-plasma-build/**
+

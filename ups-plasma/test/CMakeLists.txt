@@ -1,3 +1,4 @@
+cmake_policy(SET CMP0063 NEW)
 INCLUDE_DIRECTORIES( ${upsdataenginecpp_SOURCE_DIR} )
 MESSAGE( "source dir ${CMAKE_SOURCE_DIR}  bin dir ${CMAKE_BINARY_DIR}" )
 
@@ -18,4 +19,4 @@ SET(TEST_LIBRARIES ${QT_QTTEST_LIBRARY} ${QT_LIBRARIES})
 ADD_EXECUTABLE( UpsTests ${ups_tests_SRCS} )
 TARGET_LINK_LIBRARIES( UpsTests ${TEST_LIBRARIES} nutclient)
 ADD_TEST( NAME UpsTests COMMAND UpsTests )
-#add_executable (Test ${ups_test_SRCS})
+
