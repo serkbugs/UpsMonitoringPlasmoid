@@ -1,0 +1,21 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Ippon Ups Monitor
+Comment=Ippon Ups Monitor
+Type=Service
+
+X-KDE-ServiceTypes=Plasma/Applet
+X-Plasma-API=declarativeappletscript
+X-Plasma-MainScript=ui/main.qml
+X-Plasma-StandAloneApp=true
+
+X-KDE-Library=plasma_applet_tutorial
+X-KDE-PluginInfo-Author=serkbugs
+X-KDE-PluginInfo-Email=serkbugs@gmail.com
+X-KDE-PluginInfo-Name=org.kde.plasma.upsdataui
+X-KDE-PluginInfo-Version=1.0
+X-KDE-PluginInfo-Website=
+X-KDE-PluginInfo-Category=System Information
+X-KDE-PluginInfo-Depends=
+X-KDE-PluginInfo-License=GPL
+X-KDE-FormFactors=tablet,mediacenter,desktop
