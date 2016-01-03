@@ -27,7 +27,7 @@ import org.kde.kquickcontrolsaddons 2.0 as KQuickAddons
 
 KQuickAddons.Plotter {
     id: plotter
-    property string sensorName: model.friendlyName1
+    property string sensorName: model.friendlyName
 
     Layout.fillWidth: true
     Layout.fillHeight: true
@@ -64,19 +64,31 @@ KQuickAddons.Plotter {
     Connections {
         target: model.dataSource
         onNewData: {
-            if (sourceName.indexOf(decodeURIComponent(model.source1)) != 0) {
+            if (sourceName.indexOf(decodeURIComponent(model.source)) != 0) {
                 return;
             }
 
-            var data1 = model.dataSource.data[decodeURIComponent(model.source1)];
+            var data = model.dataSource.data[decodeURIComponent(model.source)];
 
-            if (data1 === undefined || data1.value === undefined) {
+            if (data === undefined || data.value === undefined) {
                 return;
             }
 
-            plotter.addSample([data1.value]);
+            plotter.addSample([data.value]);
 
-            speedLabel.text = formatLabel(data1);
+            var min = data.min;
+            var max = data.max;
+            //print(min);
+            //print(max);
+            if(min !== undefined){
+                plotter.rangeMin = min;
+            }
+
+            if(max !== undefined){
+                plotter.rangeMax = max;
+            }
+
+            speedLabel.text = formatLabel(data);
         }
     }
 }

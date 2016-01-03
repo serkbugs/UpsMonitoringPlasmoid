@@ -40,12 +40,11 @@ Item {
 
     Layout.preferredHeight: Layout.minimumHeight
 
-    function addSource(source1, friendlyName1, source2, friendlyName2) {
+    function addSource(source, friendlyName) {
         var found = false;
         for (var i = 0; i < sourcesModel.count; ++i) {
             var obj = sourcesModel.get(i);
-            if (obj.source1 == encodeURIComponent(source1) &&
-                obj.source2 == encodeURIComponent(source2)) {
+            if (obj.source == encodeURIComponent(source)) {
                 found = true;
                 break;
             }
@@ -53,18 +52,13 @@ Item {
         if (found) {
             return;
         }
+        smSource.connectSource(source);
 
-        smSource.connectSource(source1);
-        if (source2) {
-            smSource.connectSource(source2);
-        }
-
-        sourcesModel.append(
-           {"source1": encodeURIComponent(source1),
-            "friendlyName1": friendlyName1,
-            "source2": encodeURIComponent(source2),
-            "friendlyName2": friendlyName2,
-            "dataSource": smSource});
+        sourcesModel.append({
+                "source": encodeURIComponent(source),
+                "friendlyName": friendlyName,
+                "dataSource": smSource
+        });
     }
 
     ListModel {
@@ -79,7 +73,6 @@ Item {
 
     PlasmaCore.DataSource {
         id: smSource
-
         engine: "upsdata"
         interval: 2000
         onSourceAdded: {
@@ -92,7 +85,7 @@ Item {
         onSourceRemoved: {
             for (var i = sourcesModel.count - 1; i >= 0; --i) {
                 var obj = sourcesModel.get(i);
-                if (obj.source1 == source || obj.source2 == source) {
+                if (obj.source == source) {
                     sourcesModel.remove(i);
                 }
             }
@@ -114,8 +107,8 @@ Item {
                 for (var i = sourcesModel.count - 1; i >= 0; --i) {
                     var obj = sourcesModel.get(i);
 
-                    if (plasmoid.configuration.sources.indexOf(encodeURIComponent(obj.source1)) === -1) {
-                        sourcesToRemove.push(obj.source1);
+                    if (plasmoid.configuration.sources.indexOf(encodeURIComponent(obj.source)) === -1) {
+                        sourcesToRemove.push(obj.source);
                     }
                 }
 
