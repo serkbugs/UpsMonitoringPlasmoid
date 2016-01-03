@@ -3,12 +3,13 @@ Encoding=UTF-8
 Name=Ippon Ups Monitor
 Comment=Ippon Ups Monitor
 Type=Service
-Icon=preferences-desktop-notification
+
 X-KDE-ServiceTypes=Plasma/Applet
 X-Plasma-API=declarativeappletscript
 X-Plasma-MainScript=ui/main.qml
 X-Plasma-StandAloneApp=true
 
+X-KDE-Library=plasma_applet_tutorial
 X-KDE-PluginInfo-Author=serkbugs
 X-KDE-PluginInfo-Email=serkbugs@gmail.com
 X-KDE-PluginInfo-Name=org.kde.plasma.upsdataui
